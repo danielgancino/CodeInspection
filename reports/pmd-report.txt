@@ -1,0 +1,12 @@
+src/main/java/labcodeinspection/Email.java:7:	CommentRequired:	CommentRequired: Class comments are required
+src/main/java/labcodeinspection/Email.java:9:	CommentRequired:	CommentRequired: Field comments are required
+src/main/java/labcodeinspection/Email.java:11:	CommentRequired:	CommentRequired: Field comments are required
+src/main/java/labcodeinspection/Email.java:13:	CommentRequired:	CommentRequired: Field comments are required
+src/main/java/labcodeinspection/Email.java:15:	CommentRequired:	CommentRequired: Field comments are required
+src/main/java/labcodeinspection/Email.java:17:	CommentRequired:	CommentRequired: Field comments are required
+src/main/java/labcodeinspection/Email.java:19:	CommentRequired:	CommentRequired: Field comments are required
+src/main/java/labcodeinspection/Email.java:21:	CommentRequired:	CommentRequired: Field comments are required
+src/main/java/labcodeinspection/Email.java:24:	CommentRequired:	CommentRequired: Public method and constructor comments are required
+src/main/java/labcodeinspection/Email.java:30:	CommentRequired:	CommentRequired: Public method and constructor comments are required
+src/main/java/labcodeinspection/Email.java:68:	CommentRequired:	CommentRequired: Public method and constructor comments are required
+src/main/java/labcodeinspection/Email.java:75:	GuardLogStatement:	GuardLogStatement: Logger calls should be surrounded by log level guards.

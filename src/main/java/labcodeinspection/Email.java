@@ -1,51 +1,77 @@
 package labcodeinspection;
 
+import java.util.Locale;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Logger;
+
 public class Email {
 
-	private String m_firstName;
-	private String m_lastName;
-	private String password = null;
-	private String department;
-	private int defaultpasswordLength = 8;
-	private String email;
+    private static final Logger LOG = Logger.getLogger(Email.class.getName());
 
-	public Email(String firstName, String lastName) {
-		this.m_firstName = firstName;
-		this.m_lastName = lastName;
-	}
+    private final String firstName;
 
-	public void showInfo() {
-		System.out.println("\nFIRST NAME= " + m_firstName + "\nLAST NAME= " + m_lastName);
-		System.out.println("DEPARMENT= " + department + "\nEMAIL= " + email + "\nPASSWORD= " + password);
-	}
+    private final String lastName;
 
-	public void setDeparment(int depChoice) {
-		switch (depChoice) {
-		case 1:
-			this.department = "sales";
-			break;
-		case 2:
-			this.department = "dev";
-			break;
-		case 3:
-			this.department = "acct";
-			break;
-		}
-	}
+    private String password;
 
-	private String randomPassword(int length) {
-		String set = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#$&@*";
-		char[] password = new char[length];
-		for (int i = 0; i < length; i++) {
-			int rand = (int) (Math.random() * set.length());
-			password[i] = set.charAt(rand);
-		}
-		return new String(password);
-	}
+    private String department;
 
-	public void generateEmail() {
-		this.password = this.randomPassword(this.defaultpasswordLength);
-		this.email = this.m_firstName.toLowerCase() + this.m_lastName.toLowerCase() + "@" + this.department
-				+ ".espol.edu.ec";
-	}
+    private static final int DEFAULT_PWD_LEN = 8;
+
+    private String emailAddress;
+
+ 
+    public Email(final String firstName, final String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+
+    public String info() {
+        return "\nFIRST NAME= " + firstName
+                + "\nLAST NAME= " + lastName
+                + "\nDEPARTMENT= " + department
+                + "\nEMAIL= " + emailAddress
+                + "\nPASSWORD= " + password;
+    }
+
+   
+    public void setDepartment(final int depChoice) {
+        switch (depChoice) {
+            case 1:
+                this.department = "sales";
+                break;
+            case 2:
+                this.department = "dev";
+                break;
+            case 3:
+                this.department = "acct";
+                break;
+            default:
+                this.department = "general";
+                break;
+        }
+    }
+
+   
+    private String randomPassword(final int length) {
+        final String set = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890#$&@*";
+        final char[] pwd = new char[length];
+        for (int i = 0; i < length; i++) {
+            final int idx = ThreadLocalRandom.current().nextInt(set.length());
+            pwd[i] = set.charAt(idx);
+        }
+        return new String(pwd);
+    }
+
+  
+    public void generateEmail() {
+        this.password = this.randomPassword(DEFAULT_PWD_LEN);
+        this.emailAddress = this.firstName.toLowerCase(Locale.ROOT)
+                + this.lastName.toLowerCase(Locale.ROOT)
+                + "@"
+                + this.department
+                + ".espol.edu.ec";
+        LOG.fine("Email generado para " + firstName + " " + lastName);
+    }
 }
